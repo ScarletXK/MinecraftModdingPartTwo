@@ -3,6 +3,7 @@ package net.shadow.zero;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ComposterBlock;
@@ -20,6 +21,8 @@ import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.shadow.zero.entity.ModEntityTypes;
+import net.shadow.zero.entity.client.RaccoonRenderer;
+import net.shadow.zero.item.ModItems;
 import org.slf4j.Logger;
 
 import java.util.stream.Collectors;
@@ -37,6 +40,7 @@ public class ZeroMod
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModEntityTypes.register(eventBus);
+        ModItems.register(eventBus);
 
 
         eventBus.addListener(this::setup);
@@ -49,7 +53,7 @@ public class ZeroMod
 
 
     private void clientSetup(final FMLClientSetupEvent event) {
-
+        EntityRenderers.register(ModEntityTypes.RACCOON.get(), RaccoonRenderer::new);
     }
 
     private void setup(final FMLCommonSetupEvent event) {

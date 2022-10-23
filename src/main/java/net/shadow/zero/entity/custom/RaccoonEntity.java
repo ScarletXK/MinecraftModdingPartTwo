@@ -24,7 +24,7 @@ public class RaccoonEntity extends Animal implements IAnimatable {
 
     private AnimationFactory factory = new AnimationFactory(this);
 
-    protected RaccoonEntity(EntityType<? extends Animal> pEntityType, Level pLevel) {
+    public RaccoonEntity(EntityType<? extends Animal> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
 
