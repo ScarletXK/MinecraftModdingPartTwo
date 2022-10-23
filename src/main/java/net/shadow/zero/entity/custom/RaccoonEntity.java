@@ -17,6 +17,10 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib3.core.IAnimatable;
+import software.bernie.geckolib3.core.PlayState;
+import software.bernie.geckolib3.core.builder.AnimationBuilder;
+import software.bernie.geckolib3.core.controller.AnimationController;
+import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
@@ -33,7 +37,7 @@ public class RaccoonEntity extends Animal implements IAnimatable {
                 .add(Attributes.MAX_HEALTH,20.0D)
                 .add(Attributes.ATTACK_DAMAGE, 8.0f)
                 .add(Attributes.ATTACK_SPEED, 2.0f)
-                .add(Attributes.MOVEMENT_SPEED, 0.3f).build();
+                .add(Attributes.MOVEMENT_SPEED, 0.1f).build();
     }
 
     protected void registerGoals(){
@@ -71,9 +75,25 @@ public class RaccoonEntity extends Animal implements IAnimatable {
     }
 
     /* ANIMATIONS */
+    private <E extends IAnimatable>PlayState predicate(AnimationEvent<E> event){
+        if (event.isMoving()){
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.raccoon.walk", true));
+            return PlayState.CONTINUE;
+        }
+        /*
+        if (this.isSitting()){
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.raccoon.sitting", true));
+            return PlayState.CONTINUE;
+        }
+
+         */
+        event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.raccoon.idle", true));
+        return PlayState.CONTINUE;
+    }
+
     @Override
     public void registerControllers(AnimationData data) {
-
+        data.addAnimationController(new AnimationController(this, "controller", 0 , this::predicate));
     }
 
     @Override
