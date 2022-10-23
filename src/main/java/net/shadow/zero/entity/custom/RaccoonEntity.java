@@ -1,12 +1,21 @@
 package net.shadow.zero.entity.custom;
 
+import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.Difficulty;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
@@ -14,7 +23,9 @@ import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
+import net.shadow.zero.entity.variant.RaccoonVariant;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -37,7 +48,7 @@ public class RaccoonEntity extends Animal implements IAnimatable {
                 .add(Attributes.MAX_HEALTH,20.0D)
                 .add(Attributes.ATTACK_DAMAGE, 8.0f)
                 .add(Attributes.ATTACK_SPEED, 2.0f)
-                .add(Attributes.MOVEMENT_SPEED, 0.1f).build();
+                .add(Attributes.MOVEMENT_SPEED, 0.2f).build();
     }
 
     protected void registerGoals(){
@@ -99,5 +110,48 @@ public class RaccoonEntity extends Animal implements IAnimatable {
     @Override
     public AnimationFactory getFactory() {
         return factory;
+    }
+
+    /* Variants */
+
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor accessor, DifficultyInstance instance, MobSpawnType spawnType, @Nullable SpawnGroupData groupData, @Nullable CompoundTag tag){
+        RaccoonVariant variant = Util.getRandom(RaccoonVariant.values(), this.random);
+        setVariant(variant);
+        return super.finalizeSpawn(accessor,instance,spawnType,groupData,tag);
+    }
+
+
+
+    private static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT =
+            SynchedEntityData.defineId(RaccoonEntity.class, EntityDataSerializers.INT);
+
+    private void setVariant(RaccoonVariant variant){
+        this.entityData.set(DATA_ID_TYPE_VARIANT, variant.getId() & 255);
+    }
+
+    private int getTypeVariant(){
+        return this.entityData.get(DATA_ID_TYPE_VARIANT);
+    }
+    public  RaccoonVariant getVariant(){
+        return RaccoonVariant.byId(this.getTypeVariant() & 255);
+    }
+
+
+    @Override
+    public void readAdditionalSaveData(CompoundTag tag){
+        super.readAdditionalSaveData(tag);
+        this.entityData.set(DATA_ID_TYPE_VARIANT, tag.getInt("Variant"));
+    }
+
+    @Override
+    public void addAdditionalSaveData(CompoundTag tag){
+        super.addAdditionalSaveData(tag);
+        tag.putInt("Variant", this.getTypeVariant());
+    }
+
+    @Override
+    protected void defineSynchedData(){
+        super.defineSynchedData();
+        this.entityData.define(DATA_ID_TYPE_VARIANT, 0);
     }
 }
