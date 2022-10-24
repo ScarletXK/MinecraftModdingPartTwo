@@ -30,7 +30,7 @@ public class ZeroMod {
 
     public ZeroMod() {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
-
+        ModBlocks.register(eventBus);
         ModItems.register(eventBus);
         ModEntityTypes.register(eventBus);
 
@@ -55,7 +55,7 @@ public class ZeroMod {
 
     private void setup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            ComposterBlock.COMPOSTABLES.put(ModItems.TURNIP_SEEDS.get(), 0.3f);
+            //ComposterBlock.COMPOSTABLES.put(ModItems.TURNIP_SEEDS.get(), 0.3f);
 
 
         });

@@ -32,7 +32,6 @@ public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, ZeroMod.MOD_ID);
 
 
-
     public static final RegistryObject<Block> TURNIP_CROP = BLOCKS.register("turnip_crop",
             ()-> new TurnipCropBlock(BlockBehaviour.Properties.copy(Blocks.BEETROOTS).noCollission().noOcclusion()));
 
