@@ -18,7 +18,6 @@ public class ModItems {
     public static final RegistryObject<Item> COBALT_INGOT = ITEMS.register("cobalt_ingot",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.COURSE_TAB)));
 
-    public static final RegistryObject<Item> TURNIP = ITEMS.register("turnip", ()-> new Item(new Item.Properties().tab(ModCreativeModeTab.COURSE_TAB).food(ModFoods.TURNIP)));
 
     public static final RegistryObject<Item> TURNIP_SEEDS = ITEMS.register("turnip_seeds",
             () -> new ItemNameBlockItem(ModBlocks.TURNIP_CROP.get(),

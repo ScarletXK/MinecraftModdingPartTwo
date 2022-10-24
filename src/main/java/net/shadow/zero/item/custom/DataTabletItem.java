@@ -35,7 +35,7 @@ public class DataTabletItem extends Item {
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         if(pStack.hasTag()) {
-            String currentOre = pStack.getTag().getString("mccourse.last_ore");
+            String currentOre = pStack.getTag().getString("zero.last_ore");
             pTooltipComponents.add(new TextComponent(currentOre));
         }
 

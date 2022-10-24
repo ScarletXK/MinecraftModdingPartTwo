@@ -32,7 +32,6 @@ public class ZeroMod {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModItems.register(eventBus);
-
         ModEntityTypes.register(eventBus);
 
         eventBus.addListener(this::setup);
@@ -46,6 +45,7 @@ public class ZeroMod {
 
     private void clientSetup(final FMLClientSetupEvent event) {
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.TURNIP_CROP.get(), RenderType.cutout());
+
 
         EntityRenderers.register(ModEntityTypes.RACCOON.get(), RaccoonRenderer::new);
 
