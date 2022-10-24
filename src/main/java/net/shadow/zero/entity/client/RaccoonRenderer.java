@@ -16,17 +16,14 @@ import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
 import java.util.Map;
 
 public class RaccoonRenderer extends GeoEntityRenderer<RaccoonEntity> {
-
     public static final Map<RaccoonVariant, ResourceLocation> LOCATION_BY_VARIANT =
-            Util.make(Maps.newEnumMap(RaccoonVariant.class), (p_113874_) -> {
-                p_113874_.put(RaccoonVariant.DEFAULT,
+            Util.make(Maps.newEnumMap(RaccoonVariant.class), (p_114874_) -> {
+                p_114874_.put(RaccoonVariant.DEFAULT,
                         new ResourceLocation(ZeroMod.MOD_ID, "textures/entity/raccoon/raccoon.png"));
-                p_113874_.put(RaccoonVariant.DARK,
+                p_114874_.put(RaccoonVariant.DARK,
                         new ResourceLocation(ZeroMod.MOD_ID, "textures/entity/raccoon/raccoondark.png"));
-                p_113874_.put(RaccoonVariant.RED,
+                p_114874_.put(RaccoonVariant.RED,
                         new ResourceLocation(ZeroMod.MOD_ID, "textures/entity/raccoon/redraccoon.png"));
-
-
             });
 
 
@@ -41,7 +38,9 @@ public class RaccoonRenderer extends GeoEntityRenderer<RaccoonEntity> {
     }
 
     @Override
-    public RenderType getRenderType(RaccoonEntity animatable, float partialTicks, PoseStack stack, MultiBufferSource renderTypeBuffer, VertexConsumer vertexBuilder, int packedLightIn, ResourceLocation textureLocation){
+    public RenderType getRenderType(RaccoonEntity animatable, float partialTicks, PoseStack stack,
+                                    MultiBufferSource renderTypeBuffer, VertexConsumer vertexBuilder, int packedLightIn,
+                                    ResourceLocation textureLocation) {
         stack.scale(0.8F, 0.8F, 0.8F);
         return super.getRenderType(animatable, partialTicks, stack, renderTypeBuffer, vertexBuilder, packedLightIn, textureLocation);
     }

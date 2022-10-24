@@ -1,0 +1,27 @@
+{
+  "display": {
+    "icon": {
+      "item": "zero:cobalt_ingot"
+    },
+    "title": "Zero Mod",
+    "description": "The Power lies in the Cobalt!",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "background": "zero:textures/block/cobalt_block.png"
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "zero:cobalt_ingot"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

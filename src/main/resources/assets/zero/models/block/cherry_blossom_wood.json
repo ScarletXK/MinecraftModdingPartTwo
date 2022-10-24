@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "zero:block/cherry_blossom_log",
+    "side": "zero:block/cherry_blossom_log"
+  }
+}

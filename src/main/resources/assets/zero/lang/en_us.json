@@ -1,3 +1,95 @@
 {
-  "item.zero.raccoon_spawn_egg": "Raccoon Spawn Egg"
+  "item.zero.cobalt_ingot": "Cobalt Ingot",
+  "item.zero.cobalt_nugget": "Cobalt Nugget",
+  "item.zero.raw_cobalt": "Raw Cobalt",
+  "item.zero.dowsing_rod": "Dowsing Rod",
+  "item.zero.coal_sliver": "Coal Sliver",
+  "item.zero.turnip": "Turnip",
+
+
+
+  "item.zero.cobalt_sword": "Cobalt Sword",
+  "item.zero.cobalt_pickaxe": "Cobalt Pickaxe",
+  "item.zero.cobalt_axe": "Cobalt Axe",
+  "item.zero.cobalt_hoe": "Cobalt Hoe",
+  "item.zero.cobalt_shovel": "Cobalt Shovel",
+  "item.zero.cobalt_paxel": "Cobalt Paxel",
+
+  "item.zero.cobalt_helmet": "Cobalt Helmet",
+  "item.zero.cobalt_chestplate": "Cobalt chestplate",
+  "item.zero.cobalt_leggings": "Cobalt Leggings",
+  "item.zero.cobalt_boots": "Cobalt Boots",
+
+  "item.zero.cobalt_horse_armor": "Cobalt Horse Armor",
+
+  "item.zero.data_tablet": "Data Tablet",
+  "item.zero.turnip_seeds": "Turnip Seed",
+  "item.zero.honey_bucket": "Honey Bucket",
+
+  "item.zero.cobalt_staff": "Cobalt Staff",
+  "item.zero.cobalt_bow": "Cobalt Bow",
+
+  "item.zero.bar_brawl_music_disc": "Bar Brawl Music Disc",
+  "item.zero.bar_brawl_music_disc.desc": "Bryan Tech - Bar Brawl (CC0)",
+
+  "item.zero.magic_dust": "Magic Dust",
+
+  "item.minecraft.potion.effect.freeze_potion": "Freeze Potion",
+  "item.minecraft.splash_potion.effect.freeze_potion": "Splash Portion of Freeze",
+  "item.minecraft.lingering_potion.effect.freeze_potion": "Lingering Potion of Freeze",
+
+  "itemGroup.coursemodtab": "MCCourse Mod",
+
+  "block.zero.cherry_blossom_sign": "Cherry Blossom Sign",
+
+  "block.zero.cobalt_block": "Cobalt Block",
+  "block.zero.cobalt_ore": "Cobalt Ore",
+  "block.zero.raw_cobalt_block": "Raw Cobalt Block",
+  "block.zero.deepslate_cobalt_ore": "Deep Slate Cobalt Ore",
+  "block.zero.speedy_block": "Speedy Block",
+
+  "block.zero.cobalt_stairs": "Cobalt Stair",
+  "block.zero.cobalt_slab": "Cobalt Slab",
+  "block.zero.cobalt_button": "Cobalt Button",
+  "block.zero.cobalt_pressure_plate": "Cobalt Pressure Plate",
+
+  "block.zero.cobalt_fence": "Cobalt Fence",
+  "block.zero.cobalt_fence_gate": "Cobalt Fence Gate",
+  "block.zero.cobalt_wall": "Cobalt Wall",
+
+
+  "block.zero.cherry_blossom_door": "Cherry Blossom Door",
+  "block.zero.cherry_blossom_trapdoor": "Cherry Blossom Trapdoor",
+
+  "block.zero.cobalt_lamp": "Cobalt Lamp",
+  "block.zero.turnip_crop": "Turnip Crop",
+  "block.zero.pink_rose": "Pink Rose",
+  "block.zero.potted_pink_rose": "Potted Pink Rose",
+  "block.zero.cobalt_blaster": "Cobalt Blaster",
+
+  "block.zero.cherry_blossom_log": "Cherry Blossom Log",
+  "block.zero.cherry_blossom_planks": "Cherry Blossom Planks",
+  "block.zero.cherry_blossom_wood": "Cherry Blossom Wood",
+  "block.zero.stripped_cherry_blossom_log": "Stripped Cherry Blossom Log",
+  "block.zero.stripped_cherry_blossom_wood": "Stripped Cherry Blossom wood",
+
+  "block.zero.cherry_blossom_leaves": "Cherry Blossom Leaves",
+  "block.zero.cherry_blossom_sapling": "Cherry Blossom Sapling",
+
+  "block.zero.winter_window": "Winter Window",
+
+
+  "effect.zero.freeze": "Freeze",
+
+
+
+  "item.zero.dowsing_rod.no_valuables": "No Valuables found",
+
+  "tooltip.zero.dowsing_rod.tooltip.shift": "Right Click to find valuables",
+  "tooltip.zero.dosing_rod.tooltip": "Press §eShift§r for more Information!",
+  "tooltip.block.speedy_block": "It gets Really speedy!",
+
+
+
+  "enchantment.zero.lightning_striker": "Lightning Striker"
 }

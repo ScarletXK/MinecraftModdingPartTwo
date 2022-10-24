@@ -1,0 +1,6 @@
+{
+  "parent": "zero:item/cobalt_bow",
+  "textures": {
+    "layer0": "zero:item/cobalt_bow_pulling_1"
+  }
+}

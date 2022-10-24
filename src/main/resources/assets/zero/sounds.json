@@ -1,0 +1,47 @@
+{
+  "dowsing_rod_found_ore": {
+    "subtitle": "sounds.zero.dowsing_rod_found_ore",
+    "sounds": [
+      "zero:dowsing_rod_found_ore"
+    ]
+  },
+  "cobalt_lamp_break": {
+    "subtitle": "zero.cobalt_lamp_break",
+    "sounds": [
+      "zero:cobalt_lamp_break"
+    ]
+  },
+  "cobalt_lamp_step": {
+    "subtitle": "zero.cobalt_lamp_step",
+    "sounds": [
+      "zero:cobalt_lamp_step"
+    ]
+  },
+  "cobalt_lamp_place": {
+    "subtitle": "zero.cobalt_lamp_place",
+    "sounds": [
+      "zero:cobalt_lamp_place"
+    ]
+  },
+  "cobalt_lamp_hit": {
+    "subtitle": "zero.cobalt_lamp_hit",
+    "sounds": [
+      "zero:cobalt_lamp_hit"
+    ]
+  },
+  "cobalt_lamp_fall": {
+    "subtitle": "zero.cobalt_lamp_fall",
+    "sounds": [
+      "zero:cobalt_lamp_fall"
+    ]
+  },
+
+  "bar_brawl": {
+    "sounds": [
+      {
+        "name": "zero:bar_brawl",
+        "stream": true
+      }
+    ]
+  }
+}

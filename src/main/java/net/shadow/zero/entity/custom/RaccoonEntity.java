@@ -1,5 +1,5 @@
 package net.shadow.zero.entity.custom;
-
+import net.shadow.zero.entity.variant.RaccoonVariant;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -9,7 +9,6 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -29,7 +28,6 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.scores.Team;
 import net.minecraftforge.event.ForgeEventFactory;
-import net.shadow.zero.entity.variant.RaccoonVariant;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -40,22 +38,27 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 public class RaccoonEntity extends TamableAnimal implements IAnimatable {
-
     private AnimationFactory factory = new AnimationFactory(this);
 
-    public RaccoonEntity(EntityType<? extends TamableAnimal> pEntityType, Level pLevel) {
-        super(pEntityType, pLevel);
+    private static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT =
+            SynchedEntityData.defineId(RaccoonEntity.class, EntityDataSerializers.INT);
+
+    private static final EntityDataAccessor<Boolean> SITTING =
+            SynchedEntityData.defineId(RaccoonEntity.class, EntityDataSerializers.BOOLEAN);
+
+    public RaccoonEntity(EntityType<? extends TamableAnimal> entityType, Level level) {
+        super(entityType, level);
     }
 
-    public static AttributeSupplier setAttributes(){
+    public static AttributeSupplier setAttributes() {
         return TamableAnimal.createMobAttributes()
-                .add(Attributes.MAX_HEALTH,20.0D)
-                .add(Attributes.ATTACK_DAMAGE, 8.0f)
+                .add(Attributes.MAX_HEALTH, 20.0D)
+                .add(Attributes.ATTACK_DAMAGE, 3.0f)
                 .add(Attributes.ATTACK_SPEED, 2.0f)
-                .add(Attributes.MOVEMENT_SPEED, 0.1f).build();
+                .add(Attributes.MOVEMENT_SPEED, 0.3f).build();
     }
 
-    protected void registerGoals(){
+    protected void registerGoals() {
         this.goalSelector.addGoal(1, new FloatGoal(this));
         this.goalSelector.addGoal(1, new SitWhenOrderedToGoal(this));
         this.goalSelector.addGoal(2, new PanicGoal(this, 1.25D));
@@ -66,41 +69,43 @@ public class RaccoonEntity extends TamableAnimal implements IAnimatable {
         this.targetSelector.addGoal(6, (new HurtByTargetGoal(this)).setAlertOthers());
     }
 
-
     @Nullable
     @Override
-    public AgeableMob getBreedOffspring(ServerLevel pLevel, AgeableMob pOtherParent) {
+    public AgeableMob getBreedOffspring(ServerLevel p_146743_, AgeableMob p_146744_) {
         return null;
     }
 
-    protected void playStepSound(BlockPos pos, BlockState blockIn){
+
+    protected void playStepSound(BlockPos pos, BlockState blockIn) {
         this.playSound(SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, 0.15F, 1.0F);
     }
-    protected SoundEvent getAmbientSound(){
+
+    protected SoundEvent getAmbientSound() {
         return SoundEvents.CAT_STRAY_AMBIENT;
     }
-    protected SoundEvent getHurtSound(DamageSource pDamageSource) {
+
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
         return SoundEvents.DOLPHIN_HURT;
     }
-    protected SoundEvent getDeathSound(){
+
+    protected SoundEvent getDeathSound() {
         return SoundEvents.DOLPHIN_DEATH;
     }
-    protected float getSoundVolume(){
+
+    protected float getSoundVolume() {
         return 0.2F;
     }
 
 
-
-
-
     /* ANIMATIONS */
-    private <E extends IAnimatable>PlayState predicate(AnimationEvent<E> event){
-        if (event.isMoving()){
+
+    private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
+        if (event.isMoving()) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.raccoon.walk", true));
             return PlayState.CONTINUE;
         }
 
-        if (this.isSitting()){
+        if (this.isSitting()) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.raccoon.sitting", true));
             return PlayState.CONTINUE;
         }
@@ -111,7 +116,8 @@ public class RaccoonEntity extends TamableAnimal implements IAnimatable {
 
     @Override
     public void registerControllers(AnimationData data) {
-        data.addAnimationController(new AnimationController(this, "controller", 0 , this::predicate));
+        data.addAnimationController(new AnimationController(this, "controller",
+                0, this::predicate));
     }
 
     @Override
@@ -119,57 +125,49 @@ public class RaccoonEntity extends TamableAnimal implements IAnimatable {
         return factory;
     }
 
-    /* Variants */
+    /* VARIANTS */
 
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor accessor, DifficultyInstance instance, MobSpawnType spawnType, @Nullable SpawnGroupData groupData, @Nullable CompoundTag tag){
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_146746_, DifficultyInstance p_146747_,
+                                        MobSpawnType p_146748_, @Nullable SpawnGroupData p_146749_,
+                                        @Nullable CompoundTag p_146750_) {
         RaccoonVariant variant = Util.getRandom(RaccoonVariant.values(), this.random);
         setVariant(variant);
-        return super.finalizeSpawn(accessor,instance,spawnType,groupData,tag);
+        return super.finalizeSpawn(p_146746_, p_146747_, p_146748_, p_146749_, p_146750_);
     }
 
-
-
-    private static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT =
-            SynchedEntityData.defineId(RaccoonEntity.class, EntityDataSerializers.INT);
-
-    private void setVariant(RaccoonVariant variant){
-        this.entityData.set(DATA_ID_TYPE_VARIANT, variant.getId() & 255);
-    }
-
-    private int getTypeVariant(){
-        return this.entityData.get(DATA_ID_TYPE_VARIANT);
-    }
-    public  RaccoonVariant getVariant(){
+    public RaccoonVariant getVariant() {
         return RaccoonVariant.byId(this.getTypeVariant() & 255);
     }
 
+    private int getTypeVariant() {
+        return this.entityData.get(DATA_ID_TYPE_VARIANT);
+    }
 
-    @Override
-    public void readAdditionalSaveData(CompoundTag tag){
-        super.readAdditionalSaveData(tag);
-        this.entityData.set(DATA_ID_TYPE_VARIANT, tag.getInt("Variant"));
+    private void setVariant(RaccoonVariant variant) {
+        this.entityData.set(DATA_ID_TYPE_VARIANT, variant.getId() & 255);
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundTag tag){
+    public void readAdditionalSaveData(CompoundTag p_21815_) {
+        super.readAdditionalSaveData(p_21815_);
+        this.entityData.set(DATA_ID_TYPE_VARIANT, p_21815_.getInt("Variant"));
+    }
+
+    @Override
+    public void addAdditionalSaveData(CompoundTag tag) {
         super.addAdditionalSaveData(tag);
         tag.putInt("Variant", this.getTypeVariant());
     }
 
     @Override
-    protected void defineSynchedData(){
+    protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(SITTING, false);
         this.entityData.define(DATA_ID_TYPE_VARIANT, 0);
     }
 
 
-
-    /* Tameable */
-
-    private static final EntityDataAccessor<Boolean> SITTING =
-            SynchedEntityData.defineId(RaccoonEntity.class, EntityDataSerializers.BOOLEAN);
-
+    /* TAMEABLE */
     @Override
     public InteractionResult mobInteract(Player player, InteractionHand hand) {
         ItemStack itemstack = player.getItemInHand(hand);
@@ -226,7 +224,7 @@ public class RaccoonEntity extends TamableAnimal implements IAnimatable {
         if (tamed) {
             getAttribute(Attributes.MAX_HEALTH).setBaseValue(60.0D);
             getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(4D);
-            getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue((double)0.2f);
+            getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue((double)0.5f);
         } else {
             getAttribute(Attributes.MAX_HEALTH).setBaseValue(30.0D);
             getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(2D);
@@ -242,7 +240,4 @@ public class RaccoonEntity extends TamableAnimal implements IAnimatable {
     public boolean canBeLeashed(Player player) {
         return false;
     }
-
-
-
 }

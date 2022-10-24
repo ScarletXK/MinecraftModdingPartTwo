@@ -15,11 +15,11 @@ public class ModEntityTypes {
             DeferredRegister.create(ForgeRegistries.ENTITIES, ZeroMod.MOD_ID);
 
     public static final RegistryObject<EntityType<RaccoonEntity>> RACCOON = ENTITY_TYPES.register("raccoon",
-            ()-> EntityType.Builder.of(RaccoonEntity::new, MobCategory.CREATURE).sized(0.8f, 0.6f)
-                    .build(new ResourceLocation(ZeroMod.MOD_ID,"raccoon").toString()));
+            () -> EntityType.Builder.of(RaccoonEntity::new, MobCategory.CREATURE)
+                    .sized(0.8f, 0.6f)
+                    .build(new ResourceLocation(ZeroMod.MOD_ID, "raccoon").toString()));
 
-
-  public static void  register(IEventBus eventBus){
-      ENTITY_TYPES.register(eventBus);
-  }
+    public static void register(IEventBus eventBus) {
+        ENTITY_TYPES.register(eventBus);
+    }
 }
