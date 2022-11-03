@@ -1,17 +1,26 @@
 package net.shadow.zero.event;
 
+import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import net.minecraft.world.entity.npc.VillagerProfession;
+import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ScreenOpenEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.server.command.ConfigCommand;
 import net.shadow.zero.ZeroMod;
+import net.shadow.zero.item.ModItems;
+
+import java.util.List;
 
 @Mod.EventBusSubscriber(modid = ZeroMod.MOD_ID)
 public class ModEvents {
@@ -58,4 +67,28 @@ public class ModEvents {
     }
 
      */
+
+
+    @SubscribeEvent
+    public static void addCustomTrades(VillagerTradesEvent event){
+        if (event.getType() == VillagerProfession.FARMER){
+            Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
+            ItemStack stack = new ItemStack(ModItems.TURNIP.get(), 12);
+            int villagerLevel = 1;
+
+            trades.get(villagerLevel).add((pTrader, pRandom) -> new MerchantOffer(
+                    new ItemStack(Items.EMERALD, 2), stack, 10,50, 0.02F));
+        }
+
+
+        if (event.getType() == VillagerProfession.TOOLSMITH){
+            Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
+            ItemStack stack = new ItemStack(ModItems.COBALT_INGOT.get(), 1);
+            int villagerLevel = 3;
+
+            trades.get(villagerLevel).add((pTrader, pRandom) -> new MerchantOffer(
+                    new ItemStack(Items.EMERALD, 12),
+                    stack, 4, 120, 0.09F));
+        }
+    }
 }
