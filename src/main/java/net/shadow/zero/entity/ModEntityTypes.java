@@ -9,6 +9,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.shadow.zero.ZeroMod;
 import net.shadow.zero.entity.custom.RaccoonEntity;
+import net.shadow.zero.entity.custom.TigerEntity;
 
 public class ModEntityTypes {
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES =
@@ -18,6 +19,9 @@ public class ModEntityTypes {
             () -> EntityType.Builder.of(RaccoonEntity::new, MobCategory.CREATURE)
                     .sized(0.8f, 0.6f)
                     .build(new ResourceLocation(ZeroMod.MOD_ID, "raccoon").toString()));
+
+    public static final RegistryObject<EntityType<TigerEntity>> TIGER = ENTITY_TYPES.register("tiger",
+            ()-> EntityType.Builder.of(TigerEntity::new, MobCategory.CREATURE).sized(1f,0.75f).build(new ResourceLocation(ZeroMod.MOD_ID, "tiger").toString()));
 
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);
