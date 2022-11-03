@@ -27,6 +27,8 @@ public class ModItems {
     public static final RegistryObject<Item> TURNIP = ITEMS.register("turnip",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.COURSE_TAB).food(ModFoods.TURNIP)));
 
+    public static final RegistryObject<Item> DATA_TABLET = ITEMS.register("data_tablet",
+            () -> new DataTabletItem(new Item.Properties().tab(ModCreativeModeTab.COURSE_TAB).stacksTo(1)));
 
 
 

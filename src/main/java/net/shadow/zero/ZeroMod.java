@@ -22,7 +22,9 @@ import net.shadow.zero.entity.client.RaccoonRenderer;
 import net.shadow.zero.entity.client.TigerRenderer;
 import net.shadow.zero.entity.custom.ModBoatEntity;
 import net.shadow.zero.item.ModItems;
+import net.shadow.zero.sound.ModSounds;
 import org.slf4j.Logger;
+import software.bernie.geckolib3.GeckoLib;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(ZeroMod.MOD_ID)
@@ -36,6 +38,8 @@ public class ZeroMod {
         ModBlocks.register(eventBus);
         ModItems.register(eventBus);
         ModEntityTypes.register(eventBus);
+        ModSounds.register(eventBus);
+        GeckoLib.initialize();
 
         eventBus.addListener(this::setup);
         eventBus.addListener(this::clientSetup);

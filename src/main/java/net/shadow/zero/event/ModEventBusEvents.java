@@ -1,5 +1,6 @@
 package net.shadow.zero.event;
 
+import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
@@ -9,6 +10,7 @@ import net.shadow.zero.ZeroMod;
 import net.shadow.zero.entity.ModEntityTypes;
 import net.shadow.zero.entity.custom.RaccoonEntity;
 import net.shadow.zero.entity.custom.TigerEntity;
+import org.apache.http.config.Registry;
 
 import javax.annotation.Nonnull;
 
@@ -32,5 +34,9 @@ public class ModEventBusEvents {
     public static void entityAttributeEvent(EntityAttributeCreationEvent event) {
         event.put(ModEntityTypes.RACCOON.get(), RaccoonEntity.setAttributes());
         event.put(ModEntityTypes.TIGER.get(), TigerEntity.setAttributes());
+    }
+    @SubscribeEvent
+    public static void registerRecipeTypes(final RegistryEvent.Register<RecipeSerializer<?>> event) {
+
     }
 }
