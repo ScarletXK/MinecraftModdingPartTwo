@@ -17,8 +17,10 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import net.shadow.zero.block.ModBlocks;
 import net.shadow.zero.entity.ModEntityTypes;
+import net.shadow.zero.entity.client.ModBoatRenderer;
 import net.shadow.zero.entity.client.RaccoonRenderer;
 import net.shadow.zero.entity.client.TigerRenderer;
+import net.shadow.zero.entity.custom.ModBoatEntity;
 import net.shadow.zero.item.ModItems;
 import org.slf4j.Logger;
 
@@ -50,6 +52,7 @@ public class ZeroMod {
 
         EntityRenderers.register(ModEntityTypes.RACCOON.get(), RaccoonRenderer::new);
         EntityRenderers.register(ModEntityTypes.TIGER.get(), TigerRenderer::new);
+        EntityRenderers.register(ModEntityTypes.BOAT_ENTITY.get(), ModBoatRenderer::new);
 
 
 

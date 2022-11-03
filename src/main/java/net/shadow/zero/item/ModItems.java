@@ -9,7 +9,9 @@ import net.minecraftforge.registries.RegistryObject;
 import net.shadow.zero.ZeroMod;
 import net.shadow.zero.block.ModBlocks;
 import net.shadow.zero.entity.ModEntityTypes;
+import net.shadow.zero.entity.custom.ModBoatEntity;
 import net.shadow.zero.item.custom.DataTabletItem;
+import net.shadow.zero.item.custom.ModBoatItem;
 
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
@@ -37,7 +39,8 @@ public class ModItems {
             () -> new ForgeSpawnEggItem(ModEntityTypes.TIGER,0xfcb603, 0x242321,
                     new Item.Properties().tab(ModCreativeModeTab.COURSE_TAB)));
 
-
+    public static final RegistryObject<Item> CHERRY_BLOSSOM_BOAT = ITEMS.register("cherry_blossom_boat",
+            () -> new ModBoatItem(new Item.Properties().tab(ModCreativeModeTab.COURSE_TAB), ModBoatEntity.Type.CHERRY_BLOSSOM));
 
 
 
