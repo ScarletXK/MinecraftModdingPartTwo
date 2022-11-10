@@ -11,6 +11,7 @@ import net.shadow.zero.ZeroMod;
 import net.shadow.zero.block.ModBlocks;
 import net.shadow.zero.entity.ModEntityTypes;
 import net.shadow.zero.entity.custom.ModBoatEntity;
+import net.shadow.zero.item.custom.CobaltArmorItem;
 import net.shadow.zero.item.custom.DataTabletItem;
 import net.shadow.zero.item.custom.ModBoatItem;
 
@@ -48,16 +49,16 @@ public class ModItems {
 
 
     public static final RegistryObject<Item> COBALT_HELMET = ITEMS.register("cobalt_helmet",
-            () -> new ArmorItem(ModArmorMaterials.COBALT, EquipmentSlot.HEAD,
+            () -> new CobaltArmorItem(ModArmorMaterials.COBALT, EquipmentSlot.HEAD,
                     new Item.Properties().tab(ModCreativeModeTab.COURSE_TAB)));
     public static final RegistryObject<Item> COBALT_CHESTPLATE = ITEMS.register("cobalt_chestplate",
-            () -> new ArmorItem(ModArmorMaterials.COBALT, EquipmentSlot.CHEST,
+            () -> new CobaltArmorItem(ModArmorMaterials.COBALT, EquipmentSlot.CHEST,
                     new Item.Properties().tab(ModCreativeModeTab.COURSE_TAB)));
     public static final RegistryObject<Item> COBALT_LEGGINGS = ITEMS.register("cobalt_leggings",
-            () -> new ArmorItem(ModArmorMaterials.COBALT, EquipmentSlot.LEGS,
+            () -> new CobaltArmorItem(ModArmorMaterials.COBALT, EquipmentSlot.LEGS,
                     new Item.Properties().tab(ModCreativeModeTab.COURSE_TAB)));
     public static final RegistryObject<Item> COBALT_BOOTS = ITEMS.register("cobalt_boots",
-            () -> new ArmorItem(ModArmorMaterials.COBALT, EquipmentSlot.FEET,
+            () -> new CobaltArmorItem(ModArmorMaterials.COBALT, EquipmentSlot.FEET,
                     new Item.Properties().tab(ModCreativeModeTab.COURSE_TAB)));
 
 
