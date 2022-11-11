@@ -19,6 +19,7 @@ import net.minecraftforge.registries.RegistryObject;
 import net.shadow.zero.ZeroMod;
 import net.shadow.zero.block.custom.CobaltBlasterBlock;
 import net.shadow.zero.block.custom.ModFlammableRotatedPillarBlock;
+import net.shadow.zero.block.custom.PedestalBlock;
 import net.shadow.zero.block.custom.TurnipCropBlock;
 import net.shadow.zero.item.ModCreativeModeTab;
 import net.shadow.zero.item.ModItems;
@@ -42,6 +43,10 @@ public class ModBlocks {
     public static final RegistryObject<Block> COBALT_ORE = registerBlock("cobalt_ore",
             () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(4f).requiresCorrectToolForDrops(), UniformInt.of(3, 7)), ModCreativeModeTab.COURSE_TAB);
+
+    public static final RegistryObject<Block> PEDESTAL = registerBlock("pedestal",
+            () -> new PedestalBlock(BlockBehaviour.Properties.of(Material.STONE)), ModCreativeModeTab.COURSE_TAB);
+
 
     public static final RegistryObject<Block> COBALT_BLASTER = registerBlock("cobalt_blaster",
             () -> new CobaltBlasterBlock(BlockBehaviour.Properties.of(Material.METAL).noOcclusion()),

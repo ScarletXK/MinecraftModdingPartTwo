@@ -17,12 +17,9 @@ public class ModBlockEntities {
             BLOCK_ENTITIES.register("cobalt_blaster", () ->
                     BlockEntityType.Builder.of(CobaltBlasterBlockEntity::new,
                             ModBlocks.COBALT_BLASTER.get()).build(null));
-/*
-    public static final RegistryObject<BlockEntityType<ModSignBlockEntity>> SIGN_BLOCK_ENTITIES =
-            BLOCK_ENTITIES.register("sign_block_entity", () ->
-                    BlockEntityType.Builder.of(ModSignBlockEntity::new,
-                            ModBlocks.CHERRY_BLOSSOM_WALL_SIGN.get(),
-                            ModBlocks.CHERRY_BLOSSOM_SIGN.get()).build(null));
+
+
+
 
     public static final RegistryObject<BlockEntityType<PedestalBlockEntity>> PEDESTAL =
             BLOCK_ENTITIES.register("pedestal", () ->
@@ -30,7 +27,7 @@ public class ModBlockEntities {
                             ModBlocks.PEDESTAL.get()).build(null));
 
 
- */
+
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
     }
