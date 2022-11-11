@@ -10,11 +10,13 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Material;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.shadow.zero.ZeroMod;
+import net.shadow.zero.block.custom.CobaltBlasterBlock;
 import net.shadow.zero.block.custom.ModFlammableRotatedPillarBlock;
 import net.shadow.zero.block.custom.TurnipCropBlock;
 import net.shadow.zero.item.ModCreativeModeTab;
@@ -29,6 +31,17 @@ public class ModBlocks {
     public static final RegistryObject<Block> TURNIP_CROP = BLOCKS.register("turnip_crop",
             ()-> new TurnipCropBlock(BlockBehaviour.Properties.copy(Blocks.BEETROOTS).noCollission().noOcclusion()));
 
+    public static final RegistryObject<Block> COBALT_BLOCK = registerBlock("cobalt_block",
+            () -> new Block(BlockBehaviour.Properties.of(Material.METAL).strength(5f).requiresCorrectToolForDrops()), ModCreativeModeTab.COURSE_TAB);
+
+    public static final RegistryObject<Block> RAW_COBALT_BLOCK = registerBlock("raw_cobalt_block",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(2f).requiresCorrectToolForDrops()), ModCreativeModeTab.COURSE_TAB);
+
+    public static final RegistryObject<Block> COBALT_BLASTER = registerBlock("cobalt_blaster",
+            () -> new CobaltBlasterBlock(BlockBehaviour.Properties.of(Material.METAL).noOcclusion()),
+            ModCreativeModeTab.COURSE_TAB);
+
     public static final RegistryObject<Block> CHERRY_BLOSSOM_LOG = registerBlock("cherry_blossom_log",
             () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)),
             ModCreativeModeTab.COURSE_TAB);
@@ -41,6 +54,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> STRIPPED_CHERRY_BLOSSOM_WOOD = registerBlock("stripped_cherry_blossom_wood",
             () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_WOOD)),
             ModCreativeModeTab.COURSE_TAB);
+
 
     public static final RegistryObject<Block> CHERRY_BLOSSOM_PLANKS = registerBlock("cherry_blossom_planks",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)) {

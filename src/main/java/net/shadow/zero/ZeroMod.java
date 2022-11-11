@@ -16,13 +16,17 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import net.shadow.zero.block.ModBlocks;
+import net.shadow.zero.block.entity.ModBlockEntities;
 import net.shadow.zero.entity.ModEntityTypes;
 import net.shadow.zero.entity.client.ModBoatRenderer;
 import net.shadow.zero.entity.client.RaccoonRenderer;
 import net.shadow.zero.entity.client.TigerRenderer;
 import net.shadow.zero.entity.custom.ModBoatEntity;
 import net.shadow.zero.item.ModItems;
+import net.shadow.zero.recipe.ModRecipes;
+import net.shadow.zero.screen.ModMenuTypes;
 import net.shadow.zero.sound.ModSounds;
+import net.shadow.zero.villager.ModVillagers;
 import net.shadow.zero.world.structure.ModStructures;
 import org.slf4j.Logger;
 import software.bernie.geckolib3.GeckoLib;
@@ -42,6 +46,11 @@ public class ZeroMod {
         ModSounds.register(eventBus);
         GeckoLib.initialize();
         ModStructures.register(eventBus);
+        ModVillagers.register(eventBus);
+        ModBlockEntities.register(eventBus);
+        ModMenuTypes.register(eventBus);
+
+        ModRecipes.register(eventBus);
 
         eventBus.addListener(this::setup);
         eventBus.addListener(this::clientSetup);
@@ -67,6 +76,9 @@ public class ZeroMod {
     private void setup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             //ComposterBlock.COMPOSTABLES.put(ModItems.TURNIP_SEEDS.get(), 0.3f);
+
+            ModVillagers.registerPOIs();
+
 
 
         });
