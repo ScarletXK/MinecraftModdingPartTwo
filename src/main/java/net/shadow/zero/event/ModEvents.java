@@ -19,6 +19,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.server.command.ConfigCommand;
 import net.shadow.zero.ZeroMod;
 import net.shadow.zero.item.ModItems;
+import net.shadow.zero.villager.ModVillagers;
 
 import java.util.List;
 
@@ -89,6 +90,29 @@ public class ModEvents {
             trades.get(villagerLevel).add((pTrader, pRandom) -> new MerchantOffer(
                     new ItemStack(Items.EMERALD, 12),
                     stack, 4, 120, 0.09F));
+        }
+        if (event.getType() == ModVillagers.BLASTMASTER.get()){
+            Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
+            ItemStack stack = new ItemStack(ModItems.COBALT_INGOT.get(), 1);
+            int villagerLevel = 1;
+
+            trades.get(villagerLevel).add((pTrader, pRandom) -> new MerchantOffer(
+                    new ItemStack(Items.EMERALD, 12),
+                    stack, 4, 120, 0.09F));
+            trades.get(villagerLevel).add((pTrader, pRandom) -> new MerchantOffer(
+                    new ItemStack(Items.EMERALD, 12),
+                    stack, 4, 120, 0.09F));
+
+            //level 2
+            trades.get(2).add((pTrader, pRandom) -> new MerchantOffer(
+                    new ItemStack(Items.EMERALD, 4),
+                    stack, 4, 120, 0.09F));
+            trades.get(2).add((pTrader, pRandom) -> new MerchantOffer(
+                    new ItemStack(Items.EMERALD, 5),
+                    stack, 4, 120, 0.09F));
+
+
+
         }
     }
 }
